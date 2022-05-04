@@ -12,14 +12,14 @@ public class ConvertService implements IConvertService {
 
 static {
     map.put("chicken","Chicken Trình");
-    map.put("bull","giảng đầu bò");
-    map.put("duck","tao là con bò,");
+    map.put("bull","đầu bò");
+    map.put("duck","làm con bò,");
 }
     @Override
     public String convert(String x) {
      String y=map.get(x) ;
      if(y==null){
-         return "tao là giảng óc chó, không cần phải tìm !";
+         return "không cần phải tìm !";
      }else {
          return y;
      }
