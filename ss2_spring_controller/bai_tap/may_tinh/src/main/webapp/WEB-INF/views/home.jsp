@@ -13,8 +13,8 @@
 <body>
 <h2>Calculator</h2>
 <form action="/calculator" method="post">
-    <input type="text" name="number1" placeholder="Nhập số thứ nhất">
-    <input type="text" name="number2" placeholder="Nhập số thứ hai"> <br>
+    <input type="number" name="number1" placeholder="Nhập số thứ nhất">
+    <input type="number" name="number2" placeholder="Nhập số thứ hai"> <br>
     <hr>
     <input type="submit" name="op" value="+">
     <input type="submit" name="op" value="-">
