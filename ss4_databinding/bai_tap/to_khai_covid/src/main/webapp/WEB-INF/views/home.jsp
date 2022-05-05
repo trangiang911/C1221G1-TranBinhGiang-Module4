@@ -16,6 +16,7 @@
     <h3>TÀI LIỆU QUAN TRỌNG</h3>
     <h4 style="color: red">Khuyến cáo:</h4>
 </center>
+<form action="" method="post">
 <div>
     <span>Họ tên (ghi chữ IN HOA)<span style="color: red">(*)</span></span> <br>
     <input type="text" name="name">
@@ -46,6 +47,7 @@
 </div>
 <div>
     <span>Số hộ chiếu hoặc số cmnd haowcj giấy tờ tuỳ thân<span style="color: red">(*)</span></span>
+    <input type="number" name="cmnd">
 </div>
 <div>
     <span>Thông tin đi lại<span style="color: red">(*)</span></span>
@@ -81,5 +83,7 @@
         <input type="date" name="ngayKetThuc">
     </div>
 </div>
+    <input type="submit" value="Gửi tờ khai">
+</form>
 </body>
 </html>
