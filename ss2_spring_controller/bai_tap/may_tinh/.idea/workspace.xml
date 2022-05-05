@@ -20,20 +20,34 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="79a2a92e-b511-4e59-9b2f-39d21a2b2016" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gradle/6.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1/executionHistory/executionHistory.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1/executionHistory/executionHistory.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1/fileHashes/fileHashes.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.1/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1/javaCompile/classAnalysis.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1/javaCompile/javaCompile.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../ss4_databinding/bai_tap/cau_hinh_hom_thu/.gradle/6.1/executionHistory/executionHistory.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../ss4_databinding/bai_tap/cau_hinh_hom_thu/.gradle/6.1/executionHistory/executionHistory.lock" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../ss4_databinding/bai_tap/cau_hinh_hom_thu/.gradle/6.1/fileChanges/last-build.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../ss4_databinding/bai_tap/cau_hinh_hom_thu/.gradle/6.1/fileHashes/fileHashes.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../ss4_databinding/bai_tap/cau_hinh_hom_thu/.gradle/6.1/fileHashes/fileHashes.lock" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../ss4_databinding/bai_tap/cau_hinh_hom_thu/.gradle/6.1/gc.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../ss4_databinding/bai_tap/cau_hinh_hom_thu/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../ss4_databinding/bai_tap/cau_hinh_hom_thu/.gradle/buildOutputCleanup/cache.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../ss4_databinding/bai_tap/cau_hinh_hom_thu/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../ss4_databinding/bai_tap/cau_hinh_hom_thu/.gradle/checksums/checksums.lock" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../ss4_databinding/bai_tap/cau_hinh_hom_thu/.gradle/vcs-1/gc.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../ss4_databinding/bai_tap/cau_hinh_hom_thu/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../ss4_databinding/bai_tap/cau_hinh_hom_thu/.idea/gradle.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../ss4_databinding/bai_tap/cau_hinh_hom_thu/.idea/jarRepositories.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../ss4_databinding/bai_tap/cau_hinh_hom_thu/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../ss4_databinding/bai_tap/cau_hinh_hom_thu/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../ss4_databinding/bai_tap/cau_hinh_hom_thu/build/tmp/war/MANIFEST.MF" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../ss4_databinding/bai_tap/cau_hinh_hom_thu/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../ss4_databinding/bai_tap/cau_hinh_hom_thu/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../ss4_databinding/bai_tap/cau_hinh_hom_thu/gradlew" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../ss4_databinding/bai_tap/cau_hinh_hom_thu/gradlew.bat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../ss4_databinding/bai_tap/cau_hinh_hom_thu/src/main/java/com/codegym/controller/SettingController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../ss4_databinding/bai_tap/cau_hinh_hom_thu/src/main/java/com/codegym/model/Setting.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../ss4_databinding/bai_tap/cau_hinh_hom_thu/src/main/webapp/WEB-INF/applicationContext.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../ss4_databinding/bai_tap/cau_hinh_hom_thu/src/main/webapp/WEB-INF/dispatcher-servlet.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../ss4_databinding/bai_tap/cau_hinh_hom_thu/src/main/webapp/WEB-INF/views/from.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../ss4_databinding/bai_tap/cau_hinh_hom_thu/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/codegym/controller/CaculatorController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/codegym/controller/CaculatorController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/codegym/services/impl/CalculatorService.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/codegym/services/impl/CalculatorService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/libs/may_tinh-1.0-SNAPSHOT.war" beforeDir="false" afterPath="$PROJECT_DIR$/build/libs/may_tinh-1.0-SNAPSHOT.war" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/codegym/services/impl/CalculatorService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codegym/services/impl/CalculatorService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/home.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/home.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -187,6 +201,7 @@
       <updated>1651653093679</updated>
       <workItem from="1651653109542" duration="3445000" />
       <workItem from="1651656850720" duration="920000" />
+      <workItem from="1651720893303" duration="1010000" />
     </task>
     <servers />
   </component>
