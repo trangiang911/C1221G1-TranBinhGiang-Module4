@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h2>Danh sách sản phẩm</h2>
+<form th:action="@{/search}">
+    <input type="search" name="name">
+    <input type="submit" value="tìm kiếm">
+</form>
+<button type="submit"><a th:href="@{/create}">Thêm mới</a></button>
+<h2 th:text="${mess}" style="color: green"></h2>
+<table>
+    <tr>
+        <td>#</td>
+        <td>Id</td>
+        <td>Tên sản phẩm</td>
+        <td>Giá Sản phẩm</td>
+        <td>Mô tả</td>
+        <td>Nhà sản xuất</td>
+        <td>Chỉnh sửa</td>
+        <td>Xoá Sản phẩm</td>
+    </tr>
+    <tr th:each="product, index : ${products}">
+        <td th:text="${index.count}"></td>
+        <td th:text="${product.id}"></td>
+        <td th:text="${product.name}"></td>
+        <td th:text="${product.price}"></td>
+        <td th:text="${product.summary}"></td>
+        <td th:text="${product.producer}"></td>
+        <td>
+            <button type="submit"><a th:href="@{/edit(id=${product.id})}">Chỉnh sửa</a></button>
+        </td>
+        <td>
+            <form th:action="@{/delete(id=${product.id})}" method="post">
+                <input type="submit" value="Xoá sản phẩm">
+            </form>
+        </td>
+    </tr>
+</table>
+</body>
+</html>
