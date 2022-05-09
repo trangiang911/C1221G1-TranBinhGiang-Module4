@@ -15,5 +15,5 @@ public interface IProductService<Product> {
 
     void update(Integer id, com.codegym.model.Product product);
 
-    List<Product> search(String name);
+//    List<Product> search(String name);
 }
