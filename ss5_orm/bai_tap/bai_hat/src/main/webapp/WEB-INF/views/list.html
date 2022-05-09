@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <th:block th:replace="~{layout :: linkbs}"></th:block>
+    <style>
+        .row {
+            align-items: center;
+            border-bottom: 1px solid black;
+        }
+        .row > .col-sm-8 img {
+            height: 100%;
+            width: 10%;
+        }
+        .row > .col-sm-4 {
+            text-align: center;
+        }
+        .form-control {
+            background-image: url('https://www.w3schools.com/css/searchicon.png');
+            background-position: 10px 12px;
+            background-repeat: no-repeat;
+            padding: 10px 20px 10px 40px;
+            height: 45px;
+            border-radius: 50px;
+            border: 1px solid lightgray;
+        }
+        .search {
+            display: flex;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+<h2>Danh sách bài hát</h2>
+<!--<form th:action="@{/search}">-->
+<!--    <input type="search" name="name">-->
+<!--    <input type="submit" value="tìm kiếm">-->
+<!--</form>-->
+<button type="submit"><a th:href="@{/music/create}">Thêm mới</a></button>
+<h2 th:text="${mess}" style="color: green"></h2>
+<table border="1" cellpadding="5" id="Mytable" class="table table-striped table-bordered"
+       style="width: 100%">
+    <thead>
+    <tr>
+        <td>#</td>
+        <td>Id</td>
+        <td>Tên Bài hát</td>
+        <td>Ca sĩ thể hiện</td>
+        <td>Thể loại</td>
+        <td>link nhạc</td>
+        <td>Chỉnh sửa</td>
+        <td>Xoá Sản phẩm</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="music, index : ${musics}">
+        <td th:text="${index.count}"></td>
+        <td th:text="${music.id}"></td>
+        <td th:text="${music.name}"></td>
+        <td th:text="${music.singer}"></td>
+        <td th:text="${music.type}"></td>
+        <td>
+            <a th:href="${music.link}" th:text="${music.link}"></a>
+        </td>
+        <td>
+            <button type="submit"><a th:href="@{/music/edit(id=${music.id})}">Chỉnh sửa</a></button>
+        </td>
+        <td>
+            <button
+                    th:attr="onclick=|deleteModal('${music.id}', '${music.name}')|"
+                    type="button" class="btn btn-danger" data-toggle="modal"
+                    data-target="#exampleModalCenter">
+                Delete
+            </button>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+     aria-labelledby="exampleModalCenterTitle"
+     aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Delete employee</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Bạn có muốn xoá ko
+                <span>Tên: <p id="name"></p></span>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close
+                </button>
+                <form method="post" th:action="@{/music/delete}">
+                    <input type="hidden" name="id" id="id-del">
+                    <button type="submit" class="btn btn-primary">Xác nhận xoá</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function deleteModal(id,name) {
+        document.getElementById("id-del").value = id;
+        document.getElementById("name").innerText=name;
+    }
+</script>
+<th:block th:replace="~{layout :: jsbs}"></th:block>
+</body>
+</html>
