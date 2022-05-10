@@ -39,9 +39,9 @@ public class ProductService implements IProductService<Product> {
         this.iProductRepository.update(id,product);
     }
 
-//    @Override
-//    public List<Product> search(String name) {
-//
-//        return this.iProductRepository.search(name);
-//    }
+    @Override
+    public List<Product> search(String name) {
+
+        return this.iProductRepository.search(name);
+    }
 }

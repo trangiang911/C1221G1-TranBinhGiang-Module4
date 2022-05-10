@@ -52,10 +52,10 @@ public class ProductController {
         redirectAttributes.addAttribute("mess","Chỉnh sửa thành công");
         return "redirect:/";
     }
-//    @RequestMapping(value = "/search",method = RequestMethod.GET)
-//    @GetMapping(value = "/search")
-//    public String search(@RequestParam String name,Model model){
-//        model.addAttribute("products",this.iProductService.search(name));
-//        return "home";
-//    }
+    @RequestMapping(value = "/search",method = RequestMethod.GET)
+    @GetMapping(value = "/search")
+    public String search(@RequestParam String name,Model model){
+        model.addAttribute("products",this.iProductService.search(name));
+        return "home";
+    }
 }

@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<button type="submit"><a th:href="@{/blog}">Về danh sách bài viết</a></button>
+<h2 th:text="${blog.name}"></h2>
+<p th:text="${blog.content}"></p>
+</body>
+</html>

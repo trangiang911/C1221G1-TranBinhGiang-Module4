@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityTransaction;
 import javax.persistence.TypedQuery;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -50,14 +51,9 @@ public class ProductRepository implements IProductRepository {
         entityTransaction.commit();
     }
 
-//    @Override
-//    public List<Product> search(String name) {
-//        List<Product> productList1=new ArrayList<>();
-//        for (int i = 0; i < productList.size(); i++) {
-//            if(productList.get(i).getName().toLowerCase().contains(name)){
-//                productList1.add(productList.get(i));
-//            }
-//        }
-//        return productList1;
-//    }
+    @Override
+    public List<Product> search(String name) {
+        TypedQuery<Product> typedQuery=BaseRepository.entityManager.createQuery("select s");
+        return productList1;
+    }
 }
