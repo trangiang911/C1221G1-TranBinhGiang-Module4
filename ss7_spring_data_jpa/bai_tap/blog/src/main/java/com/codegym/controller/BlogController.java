@@ -4,10 +4,14 @@ import com.codegym.model.Blog;
 import com.codegym.service.IBlogService;
 import com.codegym.service.ICategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/blog")
@@ -18,9 +22,16 @@ public class BlogController {
     @Autowired
     ICategoryService iCategoryService;
 
-    @GetMapping(value = "")
-    public String list(Model model){
-        model.addAttribute("blogs",this.iBlogService.findAll());
+    @GetMapping(value = {"","/home"})
+    public String list(Model model,
+                       @RequestParam Optional<String> sort,
+                       @PageableDefault(value = 2,sort = {})Pageable pageable,
+                       @RequestParam Optional<String> name){
+        String nameVal=name.orElse("");
+        String sortBy=sort.orElse("");
+        model.addAttribute("sort",sortBy);
+        model.addAttribute("blogs",this.iBlogService.findByname(nameVal,pageable));
+        model.addAttribute("nameVal",nameVal);
         return "home";
     }
     @GetMapping(value = "/detail")
@@ -51,10 +62,5 @@ public class BlogController {
         this.iBlogService.deleteById(id);
         redirectAttributes.addFlashAttribute("mess","xoá thành công");
         return "redirect:/blog/";
-    }
-    @GetMapping(value = "/search")
-    public String search(@RequestParam String name,Model model){
-        model.addAttribute("blogs",this.iBlogService.search(name));
-        return "home";
     }
 }

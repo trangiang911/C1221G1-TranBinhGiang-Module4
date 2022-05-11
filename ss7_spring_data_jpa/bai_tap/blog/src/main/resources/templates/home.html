@@ -10,7 +10,7 @@
 <h2 th:text="${mess}" class="text-success"></h2>
 <button><a href="/blog/create">Create </a></button>
 <hr>
-<form action="/blog/search" method="get">
+<form action="/blog" method="get">
     <div class="input-group">
         <div class="form-outline">
             <input type="search" id="form1" class="form-control" name="name"/>
@@ -26,7 +26,7 @@
     <tr>
         <td>STT</td>
         <td>ID</td>
-        <td>Name</td>
+        <td>Name <a th:href="@{/blog(page=${blogs.number},name=${nameVal},sort='id,desc')}">Mũi tên đi xuống</a></td>
         <td>Author</td>
         <td>Category</td>
         <td>Detail</td>
@@ -57,7 +57,25 @@
     </tr>
     </tbody>
 </table>
+<div>
+    <a th:if="${blogs.hasPrevious()}" th:href="@{/blog(page=${blogs.number - 1},name=${nameVal},sort=${sort})}">
+        Previous
+    </a>
+    <span th:text="${blogs.number + 1}"></span>
+    /
+    <span th:text="${blogs.totalPages}"></span>
+    <a th:if="${blogs.hasNext()}" th:href="@{/blog(page=${blogs.number + 1},name=${nameVal},sort=${sort})}">Next</a>
 
+</div>
+<div>
+    <form th:action="@{/blog}">
+        <select name="page">
+            <option th:each="blog,index: ${blogs}" th:value="${index.index}" th:text="${index.index+1}"></option>
+        </select>
+        <input type="hidden" name="name" th:value="${nameVal}">
+        <input type="submit">
+    </form>
+</div>
 <!-- Modal -->
 <form th:action="@{/blog/delete}" >
     <div class="modal top fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-mdb-backdrop="true" data-mdb-keyboard="true">

@@ -7,5 +7,21 @@
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
       <jdbc-url>jdbc:mysql://localhost:3306</jdbc-url>
     </data-source>
+    <data-source source="LOCAL" name="@localhost [2]" uuid="62ce88ed-ccab-4367-9e4a-2b66c45fbacc">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://localhost:3306</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="hibernate.conf.xml/Hibernate" uuid="bc58d932-035e-49f1-92e2-40b468c01ccc">
+      <driver-ref>mysql</driver-ref>
+      <synchronize>true</synchronize>
+      <imported>true</imported>
+      <remarks>Hibernate
+
+E:/Codegym/module4/ss3_thymeleaf/bai_tap/quan_ly_san_pham/src/main/resources/hibernate.conf.xml</remarks>
+      <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://localhost:3306/product_database?createDatabaseIfNotExist=true</jdbc-url>
+    </data-source>
   </component>
 </project>
