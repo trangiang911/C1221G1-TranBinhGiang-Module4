@@ -14,8 +14,8 @@ public class ProductService implements IProductService<Product> {
     IProductRepository iProductRepository;
 
     @Override
-    public Page<Product> findAndSearch(String nameVal, Pageable pageable) {
-        return this.iProductRepository.findAndSearch("%"+nameVal+"%",pageable);
+    public Page<Product> findAndSearch(String nameVal,String categoryFind,String priceFind,Pageable pageable) {
+        return this.iProductRepository.findAndSearch("%"+nameVal+"%",categoryFind,"%"+priceFind+"%",pageable);
     }
 
     @Override

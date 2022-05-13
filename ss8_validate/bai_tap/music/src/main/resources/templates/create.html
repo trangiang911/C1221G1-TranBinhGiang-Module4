@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <th:block th:replace="~{layout :: top-bootstrap}"></th:block>
+</head>
+<body>
+<form th:object="${musicDto}" th:method="post" th:action="@{/music/create}">
+    <fieldset class="w-75 mx-auto">
+        <legend class="text-center my-4"><span class="text-secondary">Create blog</span></legend>
+        <div>
+            <input type="hidden" th:field="*{id}" value="0" disabled>
+        </div>
+
+        <div class="form-outline w-25 mx-auto">
+            <input class="form-control" id="name1" type="text" th:field="*{name}"/>
+            <label class="form-label" for="name1">Tên bài hát</label>
+        </div>
+        <center>
+            <span style="color: red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+        </center>
+        <div class="form-outline w-25 mx-auto my-4">
+            <input class="form-control" id="singer1" type="text" th:field="*{singer}"/>
+            <label class="form-label" for="singer1">Ca sĩ</label>
+        </div>
+        <center>
+            <span style="color: red" th:if="${#fields.hasErrors('singer')}" th:errors="*{singer}"></span>
+        </center>
+        <div class="form-outline w-25 mx-auto my-4">
+            <input class="form-control" id="type1" type="text" th:field="*{type}"/>
+            <label class="form-label" for="type1">Thể loại</label>
+        </div>
+        <center>
+            <span style="color: red" th:if="${#fields.hasErrors('type')}" th:errors="*{type}"></span>
+        </center>
+        <div class="form-outline w-25 mx-auto my-4">
+            <input class="form-control" id="link1" type="text" th:field="*{link}"/>
+            <label class="form-label" for="link1">link</label>
+        </div>
+        <center>
+            <span style="color: red" th:if="${#fields.hasErrors('link')}" th:errors="*{link}"></span>
+        </center>
+    </fieldset>
+    <div class="text-center">
+        <button type="submit" class="btn btn-secondary mt-4 mx-2">Thêm mới</button>
+        <button type="button" class="btn btn-warning mt-4 mx-2">Hủy thêm mới</button>
+    </div>
+
+</form>
+<div class="text-center">
+    <a class="btn btn-light mt-4 " th:href="@{/music}">Quay về danh sách bài hát</a>
+</div>
+<th:block th:replace="~{layout :: bot-bootstrap}"></th:block>
+</body>
+</html>

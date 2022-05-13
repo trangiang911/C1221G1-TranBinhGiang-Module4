@@ -10,12 +10,23 @@
 <h2 th:text="${mess}" class="text-success"></h2>
 <a class="btn btn-primary" href="/product/create">Create new product</a>
 <hr>
-<form th:action="/product/" method="get">
+<form action="/product/" method="get">
     <div class="input-group">
         <div class="form-outline">
             <input type="search" id="form1" class="form-control" name="name"/>
             <label class="form-label" for="form1">Search by name</label>
         </div>
+        <div class="form-outline">
+            <input type="search" id="form2" class="form-control" name="pice"/>
+            <label class="form-label" for="form2">Search by price</label>
+        </div>
+        <div class="form-outline">
+            <select name="category" class="form-select" aria-label="Disabled select example">
+                <option value="%">--Chọn--</option>
+                <option th:each="category: ${categorys}" th:value="${category.id}" th:text="${category.name}"></option>
+            </select>
+        </div>
+        
         <button type="submit" class="btn btn-primary">
             <i class="fas fa-search"></i>
         </button>
@@ -26,7 +37,24 @@
     <tr>
         <td>STT</td>
         <td>ID</td>
-        <td>Name Product</td>
+        <td>Mã sản phẩm</td>
+        <td>
+            <a th:href="@{/product(page=${products.number},name=${nameVal},sort='name,asc',price=${price},category=${category})}">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up"
+                 viewBox="0 0 16 16">
+                <path fill-rule="evenodd"
+                      d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5z"/>
+            </svg>
+            </a>
+            Name Product
+            <a th:href="@{/product(page=${products.number},name=${nameVal},sort='name,desc',price=${price},category=${category})}">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down"
+                 viewBox="0 0 16 16">
+                <path fill-rule="evenodd"
+                      d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1z"/>
+            </svg>
+            </a>
+        </td>
         <td>Price</td>
         <td>Description</td>
         <td>Manufacturer</td>
@@ -39,6 +67,7 @@
     <tr th:each="product,loop : ${products}">
         <td th:text="${loop.count}"></td>
         <td th:text="${product.id}"></td>
+        <td th:text="${product.code}"></td>
         <td th:text="${product.name}"></td>
         <td th:text="${product.price}"></td>
         <td th:text="${product.description}"></td>
@@ -49,7 +78,8 @@
             <a class="btn btn-warning" th:href="@{/product/edit(id=${product.id})}" style="color: white">Edit</a>
         </td>
         <td>
-            <button th:attr="onclick=|deleteModal('${product.id}', '${product.name}')|" type="button" class="btn btn-danger"
+            <button th:attr="onclick=|deleteModal('${product.id}', '${product.name}')|" type="button"
+                    class="btn btn-danger"
                     data-mdb-toggle="modal" data-mdb-target="#exampleModal">
                 Delete
             </button>
@@ -59,11 +89,10 @@
 </table>
 
 
-
 <nav aria-label="Page navigation example">
     <ul class="pagination pagination-circle pg-blue">
         <li class="page-item "><a class="page-link" aria-label="Previous" th:if="${products.hasPrevious()}"
-                                  th:href="@{/product(page=0,name=${nameVal},sort=${sort})}">First</a></li>
+                                  th:href="@{/product(page=0,name=${nameVal},sort=${sort},price=${price},category=${category})}">First</a></li>
         <li class="page-item">
             <a class="page-link" aria-label="Previous" th:if="${products.hasPrevious()}"
                th:href="@{/product(page=${products.number - 1},name=${nameVal},sort=${sort})}">
@@ -74,27 +103,30 @@
         <li class="page-item active">
             <a class="page-link " aria-label="Previous"
                th:if="${products.hasNext()}"
-               th:href="@{/product(page=${products.number},name=${nameVal},sort=${sort})}" th:text="${products.number+1}">
+               th:href="@{/product(page=${products.number},name=${nameVal},sort=${sort},price=${price},category=${category})}"
+               th:text="${products.number+1}">
 
             </a>
         </li>
         <li class="page-item">
             <a class="page-link" aria-label="Previous"
                th:if="${products.hasNext()}"
-               th:href="@{/product(page=${products.number + 1},name=${nameVal},sort=${sort})}" th:text="${products.number+2}">
+               th:href="@{/product(page=${products.number + 1},name=${nameVal},sort=${sort},price=${price},category=${category})}"
+               th:text="${products.number+2}">
 
             </a>
         </li>
 
         <li class="page-item">
             <a class="page-link" aria-label="Previous" th:if="${products.hasNext()}"
-               th:href="@{/product(page=${products.number + 1},name=${nameVal},sort=${sort})}">
+               th:href="@{/product(page=${products.number + 1},name=${nameVal},sort=${sort},price=${price},category=${category})}">
                 <span aria-hidden="true">&raquo;</span>
                 <span class="sr-only">Next</span>
             </a>
         </li>
         <li class="page-item "><a class="page-link" aria-label="Previous" th:if="${products.hasNext()}"
-                                  th:href="@{/product(page=${products.totalPages - 1},name=${nameVal},sort=${sort})}">Last</a></li>
+                                  th:href="@{/product(page=${products.totalPages - 1},name=${nameVal},sort=${sort},price=${price},category=${category})}">Last</a>
+        </li>
     </ul>
 </nav>
 

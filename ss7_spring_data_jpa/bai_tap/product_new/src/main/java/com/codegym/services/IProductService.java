@@ -5,7 +5,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 public interface IProductService<Product> {
-    Page<Product> findAndSearch(String nameVal, Pageable pageable);
+    Page<Product> findAndSearch(String nameVal,String categoryFind,String priceFind, Pageable pageable);
 
     void save(com.codegym.model.Product product);
 

@@ -24,13 +24,20 @@ public class ProductController {
     @GetMapping(value = "")
     public String goList(Model model,
                          @RequestParam("name")Optional<String> name,
+                         @RequestParam("price") Optional<String> price,
+                         @RequestParam("category") Optional<String> category,
                          @RequestParam("sort")Optional<String> sort,
                          @PageableDefault(value = 2,sort = {})Pageable pageable){
         String nameVal=name.orElse("");
         String sortByName=sort.orElse("");
+        String categoryFind=category.orElse("%");
+        String priceFind=price.orElse("");
+        model.addAttribute("category",categoryFind);
+        model.addAttribute("price",priceFind);
         model.addAttribute("nameVal",nameVal);
         model.addAttribute("sort",sortByName);
-        model.addAttribute("products",this.iProductService.findAndSearch(nameVal,pageable));
+        model.addAttribute("products",this.iProductService.findAndSearch(nameVal,categoryFind,priceFind,pageable));
+        model.addAttribute("categorys",this.iCategoryService.findAll());
         return "list";
     }
     @GetMapping(value = "/create")
