@@ -26,7 +26,7 @@
     <tr>
         <td>STT</td>
         <td>ID</td>
-        <td>Tên bài hát <a th:href="@{/blog(page=${musics.number},name=${nameVal},sort='id,desc')}">Mũi tên đi xuống</a></td>
+        <td>Tên bài hát <a th:href="@{/music(page=${musics.number},name=${nameVal},sort='id,desc')}">Mũi tên đi xuống</a></td>
         <td>Ca sĩ thể hiện</td>
         <td>Thể loại nhạc</td>
         <td>Đường dẫn</td>
@@ -62,13 +62,13 @@
     <span th:text="${musics.number + 1}"></span>
     /
     <span th:text="${musics.totalPages}"></span>
-    <a th:if="${musics.hasNext()}" th:href="@{/blog(page=${musics.number + 1},name=${nameVal},sort=${sort})}">Next</a>
+    <a th:if="${musics.hasNext()}" th:href="@{/music(page=${musics.number + 1},name=${nameVal},sort=${sort})}">Next</a>
 
 </div>
 <div>
     <form th:action="@{/music}">
         <select name="page">
-            <option th:each="blog,index: ${musics}" th:value="${index.index}" th:text="${index.index+1}"></option>
+            <option th:each="music,index: ${musics}" th:value="${musics.totalPages}" th:text="${musics.number+1}"></option>
         </select>
         <input type="hidden" name="name" th:value="${nameVal}">
         <input type="submit">
