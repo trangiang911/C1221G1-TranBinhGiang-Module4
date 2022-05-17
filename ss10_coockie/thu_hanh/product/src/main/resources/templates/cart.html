@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Song</title>
+    <th:block th:replace="~{layout :: top-bootstrap}"></th:block>
+</head>
+<body>
+<h1><a href="/music/">Song List</a></h1>
+<h2 th:text="${mess}" class="text-success"></h2>
+<a class="btn btn-warning" href="/music/create">Create </a>
+<hr>
+<form action="/music/" method="get">
+    <div class="input-group">
+        <div class="form-outline">
+            <input type="search" id="form1" class="form-control" name="name"/>
+            <label class="form-label" for="form1">Search by name</label>
+        </div>
+        <button type="submit" class="btn btn-primary">
+            <i class="fas fa-search"></i>
+        </button>
+    </div>
+</form>
+<table class="table">
+    <thead class="table-dark">
+    <tr>
+        <td>STT</td>
+        <td>Ảnh</td>
+        <td>Tên sản phẩm</td>
+        <td>Giá</td>
+        <td>mô tả</td>
+        <td>số lương</td>
+        <td>Delete</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="cart,index : ${carts.productMap}">
+        <td th:text="${index.count}"></td>
+        <td><img th:src="${cart.key.link}" style="height: 50px;width: 50px"></td>
+        <td th:text="${cart.key.name}"></td>
+        <td th:text="${cart.key.price}"></td>
+        <td th:text="${cart.key.description}"></td>
+        <td th:text="${cart.value}"></td>
+        <td>
+            <button  th:attr="onclick=|deleteModal('${cart.key.id}', '${cart.key.name}')|" type="button" class="btn btn-danger" data-mdb-toggle="modal" data-mdb-target="#exampleModal">
+                Delete
+            </button>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<!-- Modal -->
+<!--<form th:action="@{/muisc/delete}" >-->
+<!--    <div class="modal top fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-mdb-backdrop="true" data-mdb-keyboard="true">-->
+<!--        <div class="modal-dialog  ">-->
+<!--            <div class="modal-content">-->
+<!--                <div class="modal-header">-->
+<!--                    <h5 class="modal-title" id="exampleModalLabel">Delete Song</h5>-->
+<!--                    <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>-->
+<!--                </div>-->
+<!--                <div class="modal-body">-->
+<!--                    Bạn có muốn xóa bài hát này không<br>-->
+<!--                    <span>Tên: <p id = "name"></p></span>-->
+<!--                </div>-->
+<!--                <div class="modal-footer">-->
+<!--                    <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">-->
+<!--                        Close-->
+<!--                    </button>-->
+<!--                    <input type="hidden" name="id" id="id-del">-->
+<!--                    <button type="submit" class="btn btn-danger">Delete</button>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</form>-->
+<th:block th:replace="~{layout :: bot-bootstrap}"></th:block>
+<script>
+    function deleteModal(id,name) {
+        document.getElementById("id-del").value = id;
+        document.getElementById("name").innerText=name;
+    }
+</script>
+</body>
+</html>
