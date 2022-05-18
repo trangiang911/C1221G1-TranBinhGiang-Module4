@@ -8,9 +8,14 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
+import java.util.Optional;
 
-public interface IBlogRepository extends JpaRepository<Blog,Integer> {
-    @Query(value="select * from blog where name like :nameVal",
-            countQuery = "select * from blog where name like :nameVal",nativeQuery=true)
+public interface IBlogRepository extends JpaRepository<Blog, Integer> {
+    @Query(value = "select * from blog where name like :nameVal",
+            countQuery = "select * from blog where name like :nameVal", nativeQuery = true)
     Page<Blog> findAllBlog(@Param("nameVal") String nameVal, Pageable pageable);
+
+    @Query(value = "select * from blog where category_id = :category",
+            countQuery = "select * from blog where category_id = :category", nativeQuery = true)
+    Page<Blog> findByCate(Optional category, Pageable pageable);
 }
