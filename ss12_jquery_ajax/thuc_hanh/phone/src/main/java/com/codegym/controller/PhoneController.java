@@ -50,4 +50,14 @@ public class PhoneController {
         this.iPhoneService.save(phone);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Phone> deleteSmartphone(@PathVariable Long id) {
+        Optional<Phone> smartphoneOptional = this.iPhoneService.findById(id);
+        if (!smartphoneOptional.isPresent()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        this.iPhoneService.remove(id);
+        return new ResponseEntity<>(smartphoneOptional.get(), HttpStatus.NO_CONTENT);
+    }
 }
