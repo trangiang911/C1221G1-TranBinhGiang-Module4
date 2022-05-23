@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Customer</title>
+    <th:block th:replace="~{layout :: top-bootstrap}"></th:block>
+</head>
+<body>
+<h1><a href="/employee/">Employee List</a></h1>
+<h2 th:text="${mess}" class="text-success"></h2>
+<button><a href="/customer/create">Create </a></button>
+<hr>
+<form action="/employee" method="get">
+    <div class="input-group">
+        <div class="form-outline">
+            <input type="search" id="form1" class="form-control" name="name"/>
+            <label class="form-label" for="form1">Search by name</label>
+        </div>
+        <div class="form-outline">
+            <input type="search" id="form2" class="form-control" name="address"/>
+            <label class="form-label" for="form2">Search by address</label>
+        </div>
+        <div class="form-outline">
+            <select name="type" class="form-select" aria-label="Disabled select example">
+                <option value="%">--Chọn--</option>
+                <option th:each="position: ${positions}" th:value="${position.positionId}" th:text="${position.positionName}"></option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">
+            <i class="fas fa-search"></i>
+        </button>
+    </div>
+</form>
+<table class="table">
+    <thead class="table-dark">
+    <tr>
+        <td>STT</td>
+        <!--        <td>ID</td>-->
+        <td>
+            <a th:href="@{/employee(page=${employees.number},name=${nameVal},address=${address},position=${position},sort='employee_name,asc')}">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up"
+                     viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                          d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5z"/>
+                </svg>
+            </a>
+            Name
+            <a th:href="@{/employee(page=${employees.number},name=${nameVal},address=${address},position=${position},sort='employee_name,desc')}">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down"
+                     viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                          d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1z"/>
+                </svg>
+            </a>
+        </td>
+        <td>DayOfBirth</td>
+        <td>Gender</td>
+        <td>CMND</td>
+        <td>Phone</td>
+        <td>Email</td>
+        <td>Address</td>
+        <td>Type</td>
+        <td>Edit</td>
+        <td>Delete</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="employee,loop : ${employees}">
+        <td th:text="${loop.count}"></td>
+        <!--        <td th:text="${customer.id}"></td>-->
+        <td th:text="${employee.customerName}" id="name1"></td>
+        <td th:text="${employee.customerBirthday}" ></td>
+        <td th:if="${employee.customerGender eq 1}" th:text="Nam" ></td>
+        <td th:if="${employee.customerGender eq 0}" th:text="Nữ" ></td>
+        <td th:if="${employee.customerGender == null}" th:text="Khác"></td>
+        <td th:text="${employee.customerIdCard}" ></td>
+        <td th:text="${employee.customerPhone}" ></td>
+        <td th:text="${employee.customerEmail}" ></td>
+        <td th:text="${employee.customerAddress}" ></td>
+        <td th:text="${employee.customerType.customerTypeName}"></td>
+        <td>
+            <a class="btn btn-warning" th:href="@{/customer/edit(id=${customer.customerId})}" style="color: white">Edit</a>
+            <!--            <a class="btn btn-warning" th:id="edit" style="color: white">Edit</a>-->
+        </td>
+        <td>
+            <button  th:attr="onclick=|deleteModal('${customer.customerId}', '${customer.customerName}')|" type="button" class="btn btn-danger" data-mdb-toggle="modal" data-mdb-target="#exampleModal">
+                Delete
+            </button>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<div>
+    <a th:if="${customers.hasPrevious()}" th:href="@{/customer(page=${customers.number - 1},name=${nameVal},sort=${sort})}">
+        Previous
+    </a>
+    <span th:text="${customers.number + 1}"></span>
+    /
+    <span th:text="${customers.totalPages}"></span>
+    <a th:if="${customers.hasNext()}" th:href="@{/customer(page=${customers.number + 1},name=${nameVal},sort=${sort})}">Next</a>
+
+</div>
+<!-- Modal -->
+<form th:action="@{/customer/delete}" >
+    <div class="modal top fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-mdb-backdrop="true" data-mdb-keyboard="true">
+        <div class="modal-dialog  ">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Delete Customer</h5>
+                    <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Bạn có muốn xóa nhân viên này không<br>
+                    <span>Tên: <p id = "name"></p></span>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">
+                        Close
+                    </button>
+                    <input type="hidden" name="id" id="id-del">
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+<th:block th:replace="~{layout :: bot-bootstrap}"></th:block>
+<script>
+    function deleteModal(id,name) {
+        document.getElementById("id-del").value = id;
+        document.getElementById("name").innerText=name;
+    }
+</script>
+<!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>-->
+<!--&lt;!&ndash;<script src="/static/js/mdb.min.js"></script>&ndash;&gt;-->
+<!--<script>-->
+<!--    $("#edit").click(function () {-->
+<!--        $("#name1").attr("contenteditable","true");-->
+<!--    })-->
+<!--</script>-->
+</body>
+</html>

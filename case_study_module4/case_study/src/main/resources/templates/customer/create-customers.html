@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <th:block th:replace="~{layout :: top-bootstrap}"></th:block>
+</head>
+<body>
+<form th:object="${customerDto}" th:method="post" th:action="@{/customer/create}">
+    <fieldset class="w-75 mx-auto">
+        <legend class="text-center my-4"> <span class="text-secondary">Create customer</span></legend>
+        <div>
+            <input type="hidden" th:field="*{customerId}" value="0">
+
+        </div>
+
+        <div class="form-outline w-25 mx-auto">
+            <input class="form-control" id="name" type="text" th:field="*{customerName}"/>
+            <label class="form-label" for="name">Name Customer</label>
+
+        </div>
+        <div class="w-25 mx-auto">
+            <span style="color: red" th:if="${#fields.hasErrors('customerName')}" th:errors="*{customerName}"></span>
+        </div>
+        <div class="form-outline w-25 mx-auto my-4">
+            <input class="form-control" id="dayofbirth" type="date" th:field="*{customerBirthday}"/>
+            <label class="form-label" for="dayofbirth">Day of birth</label>
+        </div>
+        <div class="form-outline w-25 mx-auto my-4">
+            <input class="form-control" id="cmnd" type="text" th:field="*{customerIdCard}"/>
+            <label class="form-label" for="cmnd">CMND</label>
+        </div>
+        <div class="form-outline w-25 mx-auto my-4">
+            <input class="form-control" id="phone" type="text" th:field="*{customerPhone}"/>
+            <label class="form-label" for="phone">Phone</label>
+        </div>
+        <div class="w-25 mx-auto">
+            <span style="color: red" th:if="${#fields.hasErrors('customerPhone')}" th:errors="*{customerPhone}"></span>
+        </div>
+        <div class="form-outline w-25 mx-auto my-4">
+            <input class="form-control" id="email" type="email" th:field="*{customerEmail}"/>
+            <label class="form-label" for="email">Email</label>
+        </div>
+        <div class="w-25 mx-auto">
+            <span style="color: red" th:if="${#fields.hasErrors('customerEmail')}" th:errors="*{customerEmail}"></span>
+        </div>
+        <div class="form-outline w-25 mx-auto my-4">
+            <input class="form-control" id="address" type="text" th:field="*{customerAddress}"/>
+            <label class="form-label" for="address">Address</label>
+        </div>
+        <div class="form-outline w-25 mx-auto my-4">
+            <select th:field="*{customerGender}" class="form-select" aria-label="Disabled select example">
+                <option value="" th:text="Khác"></option>
+                <option value="1" th:text="Nam"></option>
+                <option value="0" th:text="Nữ"></option>
+            </select>
+        </div>
+        <div class="form-outline w-25 mx-auto my-4">
+            <select  th:field="*{customerType}" class="form-select" aria-label="Disabled select example" >
+                <option value="0" th:text="---Select---"></option>
+                <option th:each="customerType : ${customerTypes}" th:value="${customerType.customerTypeId}" th:text="${customerType.customerTypeName}"></option>
+            </select>
+        </div>
+        <div class="w-25 mx-auto">
+            <span style="color: red" th:if="${#fields.hasErrors('customerType')}" th:errors="*{customerType}"></span>
+        </div>
+    </fieldset>
+    <div class="text-center">
+        <button type="submit" class="btn btn-secondary mt-4 mx-2">Create</button>
+        <a class="btn btn-light mt-4 " th:href="@{/templates/customer}">Back to customer list</a>
+    </div>
+
+</form>
+<th:block th:replace="~{layout :: bot-bootstrap}"></th:block>
+</body>
+</html>

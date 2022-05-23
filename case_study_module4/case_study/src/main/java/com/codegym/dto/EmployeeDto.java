@@ -1,45 +1,27 @@
-package com.codegym.model.employee;
+package com.codegym.dto;
 
 import com.codegym.model.contract.Contract;
+import com.codegym.model.employee.Division;
+import com.codegym.model.employee.EducationDegree;
+import com.codegym.model.employee.Position;
 
-import javax.persistence.*;
 import java.util.List;
 
-@Entity
-@Table(name = "employee")
-public class Employee {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class EmployeeDto {
     private Integer employeeId;
     private String employeeName;
-    @Column(columnDefinition = "DATE")
     private String employeeBirthday;
     private String employeeIdCard;
     private String employeeSlary;
     private String employPhone;
     private String employEmail;
     private String employeeAddress;
-    @ManyToOne
-    @JoinColumn(name = "position_id", referencedColumnName = "positionId")
     private Position position;
-    @ManyToOne
-    @JoinColumn(name = "education_degree_id", referencedColumnName = "educationDegreeId")
     private EducationDegree educationDegree;
-    @ManyToOne
-    @JoinColumn(name = "division_id", referencedColumnName = "divisionId")
     private Division division;
-    @OneToMany(mappedBy = "employee")
     private List<Contract> contractList;
 
-    public List<Contract> getContractList() {
-        return contractList;
-    }
-
-    public void setContractList(List<Contract> contractList) {
-        this.contractList = contractList;
-    }
-
-    public Employee() {
+    public EmployeeDto() {
     }
 
     public Integer getEmployeeId() {
@@ -128,5 +110,13 @@ public class Employee {
 
     public void setDivision(Division division) {
         this.division = division;
+    }
+
+    public List<Contract> getContractList() {
+        return contractList;
+    }
+
+    public void setContractList(List<Contract> contractList) {
+        this.contractList = contractList;
     }
 }
