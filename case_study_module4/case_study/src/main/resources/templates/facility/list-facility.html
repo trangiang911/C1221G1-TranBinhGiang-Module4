@@ -2,28 +2,30 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Customer</title>
+    <title>Facility</title>
     <th:block th:replace="~{layout :: top-bootstrap}"></th:block>
 </head>
 <body>
-<h1><a href="/employee/">Employee List</a></h1>
+<h1><a href="/facility/">Facility List</a></h1>
 <h2 th:text="${mess}" class="text-success"></h2>
-<button><a href="/customer/create">Create </a></button>
+<button><a href="/facility/create">Create</a></button>
 <hr>
-<form action="/employee" method="get">
+<form action="/facility/" method="get">
     <div class="input-group">
         <div class="form-outline">
             <input type="search" id="form1" class="form-control" name="name"/>
             <label class="form-label" for="form1">Search by name</label>
         </div>
         <div class="form-outline">
-            <input type="search" id="form2" class="form-control" name="address"/>
-            <label class="form-label" for="form2">Search by address</label>
+            <select name="rent" class="form-select" aria-label="Disabled select example">
+                <option value="%">--Chọn--</option>
+                <option th:each="rent: ${rents}" th:value="${rent.rentTypeId}" th:text="${rent.rentTypeName}"></option>
+            </select>
         </div>
         <div class="form-outline">
             <select name="type" class="form-select" aria-label="Disabled select example">
                 <option value="%">--Chọn--</option>
-                <option th:each="position: ${positions}" th:value="${position.positionId}" th:text="${position.positionName}"></option>
+                <option th:each="type: ${types}" th:value="${type.facilityTypeId}" th:text="${type.facilityTypeName}"></option>
             </select>
         </div>
         <button type="submit" class="btn btn-primary">
@@ -37,7 +39,7 @@
         <td>STT</td>
         <!--        <td>ID</td>-->
         <td>
-            <a th:href="@{/employee(page=${employees.number},name=${nameVal},address=${address},position=${position},sort='employee_name,asc')}">
+            <a th:href="@{/facility(page=${facilitys.number},name=${name},rent=${rent},type=${type},sort='facility_name,asc')}">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up"
                      viewBox="0 0 16 16">
                     <path fill-rule="evenodd"
@@ -45,7 +47,7 @@
                 </svg>
             </a>
             Name
-            <a th:href="@{/employee(page=${employees.number},name=${nameVal},address=${address},position=${position},sort='employee_name,desc')}">
+            <a th:href="@{/facility(page=${facilitys.number},name=${name},rent=${rent},type=${type},sort='facility_name,desc')}">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down"
                      viewBox="0 0 16 16">
                     <path fill-rule="evenodd"
@@ -53,39 +55,37 @@
                 </svg>
             </a>
         </td>
-        <td>DayOfBirth</td>
-        <td>CMND</td>
-        <td>Slary</td>
-        <td>Contact</td>
-        <td>Address</td>
-        <td>Position</td>
-        <td>Education</td>
-        <td>Division</td>
+        <td>Area</td>
+        <td>Cost</td>
+        <td>Max People</td>
+        <td>Standard room</td>
+        <td>Descrip</td>
+        <td>Pool Area</td>
+        <td>Number Floor</td>
+        <td>Facility Type</td>
+        <td>Rent type</td>
         <td>Action</td>
     </tr>
     </thead>
     <tbody>
-    <tr th:each="employee,loop : ${employees}">
+    <tr th:each="facility,loop : ${facilitys}">
         <td th:text="${loop.count}"></td>
-        <!--        <td th:text="${customer.id}"></td>-->
-        <td th:text="${employee.employeeName}" id="name1"></td>
-        <td th:text="${employee.employeeBirthday}" ></td>
-        <td th:text="${employee.employeeIdCard}" ></td>
-        <td th:text="${employee.employeeSlary}" ></td>
-        <td >
-            <p th:text="${employee.employPhone}"></p>
-            <p th:text="${employee.employEmail}"></p>
-        </td>
-        <td th:text="${employee.employeeAddress}" ></td>
-        <td th:text="${employee.position.positionName}"></td>
-        <td th:text="${employee.educationDegree.educationDegreeName}"></td>
-        <td th:text="${employee.division.divisionName}"></td>
+        <td th:text="${facility.facilityName}" id="name1"></td>
+        <td th:text="${facility.facilityArea}" ></td>
+        <td th:text="${facility.facilityCost}" ></td>
+        <td th:text="${facility.facilityMaxPeople}" ></td>
+        <td th:text="${facility.standardRoom}" ></td>
+        <td th:text="${facility.descriptionOtherConvenience}" ></td>
+        <td th:text="${facility.poolArea}" ></td>
+        <td th:text="${facility.numberOfFloors}" ></td>
+        <td th:text="${facility.facilityType.facilityTypeName}"></td>
+        <td th:text="${facility.rentType.rentTypeName}"></td>
         <td>
-            <a class="btn btn-warning" th:href="@{/employee/edit(id=${employee.employeeId})}" style="color: white">Edit</a>
+            <a class="btn btn-warning" th:href="@{/facility/edit(id=${facility.facilityId})}" style="color: white">Edit</a>
             <!--            <a class="btn btn-warning" th:id="edit" style="color: white">Edit</a>-->
 
 
-            <button  th:attr="onclick=|deleteModal('${employee.employeeId}', '${employee.employeeName}')|" type="button" class="btn btn-danger" data-mdb-toggle="modal" data-mdb-target="#exampleModal">
+            <button  th:attr="onclick=|deleteModal('${facility.facilityId}', '${facility.facilityName}')|" type="button" class="btn btn-danger" data-mdb-toggle="modal" data-mdb-target="#exampleModal">
                 Delete
             </button>
         </td>
@@ -93,17 +93,17 @@
     </tbody>
 </table>
 <div>
-    <a th:if="${employees.hasPrevious()}" th:href="@{/employee(page=${employees.number - 1},name=${nameVal},address=${address},position=${position},sort=${sort})}">
+    <a th:if="${facilitys.hasPrevious()}" th:href="@{/facility(page=${facilitys.number - 1},name=${name},rent=${rent},type=${type},sort=${sort})}">
         Previous
     </a>
-    <span th:text="${employees.number + 1}"></span>
+    <span th:text="${facilitys.number + 1}"></span>
     /
-    <span th:text="${employees.totalPages}"></span>
-    <a th:if="${employees.hasNext()}" th:href="@{/employee(page=${employees.number + 1},name=${nameVal},address=${address},position=${position},sort=${sort})}">Next</a>
+    <span th:text="${facilitys.totalPages}"></span>
+    <a th:if="${facilitys.hasNext()}" th:href="@{/facility(page=${facilitys.number + 1},name=${name},rent=${rent},type=${type},sort=${sort})}">Next</a>
 
 </div>
 <!-- Modal -->
-<form th:action="@{/employee/delete}" >
+<form th:action="@{/facility/delete}" >
     <div class="modal top fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-mdb-backdrop="true" data-mdb-keyboard="true">
         <div class="modal-dialog  ">
             <div class="modal-content">

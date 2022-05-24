@@ -28,7 +28,7 @@ public class Employee {
     @ManyToOne
     @JoinColumn(name = "division_id", referencedColumnName = "divisionId")
     private Division division;
-    @OneToMany(mappedBy = "employee")
+    @OneToMany(mappedBy = "employee",cascade = CascadeType.ALL)
     private List<Contract> contractList;
 
     public List<Contract> getContractList() {

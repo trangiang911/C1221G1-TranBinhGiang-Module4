@@ -10,7 +10,7 @@ public class EducationDegree {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer educationDegreeId;
     private String educationDegreeName;
-    @OneToMany(mappedBy = "educationDegree")
+    @OneToMany(mappedBy = "educationDegree",cascade = CascadeType.ALL)
     private List<Employee> employeeList;
 
     public EducationDegree() {

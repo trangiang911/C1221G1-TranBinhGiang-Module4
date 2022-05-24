@@ -10,7 +10,7 @@ public class Division {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer divisionId;
     private String divisionName;
-    @OneToMany(mappedBy = "division")
+    @OneToMany(mappedBy = "division",cascade = CascadeType.ALL)
     private List<Employee> employeeList;
 
     public Division() {

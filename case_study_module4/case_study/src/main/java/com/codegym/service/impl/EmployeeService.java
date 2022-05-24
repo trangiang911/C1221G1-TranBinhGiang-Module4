@@ -19,4 +19,21 @@ public class EmployeeService implements IEmployeeService<Employee> {
     public Page<Employee> findAndSearch(String nameVal, String addressBy, String positionBy, Pageable pageable) {
         return this.iEmployeeRepository.findAndSearch("%"+nameVal+"%","%"+addressBy+"%",positionBy,pageable);
     }
+
+    @Override
+    public void save(Employee employee) {
+        this.iEmployeeRepository.save(employee);
+    }
+
+    @Override
+    public Employee findById(Integer id) {
+        return this.iEmployeeRepository.findById(id).orElse(null);
+    }
+
+    @Override
+    public void deleteById(Integer id) {
+        this.iEmployeeRepository.deleteById(id);
+    }
+
+
 }
