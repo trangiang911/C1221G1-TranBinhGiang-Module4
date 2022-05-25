@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Customer</title>
+    <th:block th:replace="~{layout :: top-bootstrap}"></th:block>
+</head>
+<body>
+<h1><a href="/contract/">Contract List</a></h1>
+<h2 th:text="${mess}" class="text-success"></h2>
+<button><a href="/contract/create">Create </a></button>
+<hr>
+<form action="/contract/" method="get">
+    <div class="input-group">
+        <div class="form-outline">
+            <select name="employee" class="form-select" aria-label="Disabled select example">
+                <option value="%">--Chọn--</option>
+                <option th:each="employ: ${employees}" th:value="${employ.employeeId}" th:text="${employ.employeeName}"></option>
+            </select>
+        </div>
+        <div class="form-outline">
+            <select name="customer" class="form-select" aria-label="Disabled select example">
+                <option value="%">--Chọn--</option>
+                <option th:each="cus: ${customers}" th:value="${cus.customerId}" th:text="${cus.customerName}"></option>
+            </select>
+        </div>
+        <div class="form-outline">
+            <select name="service" class="form-select" aria-label="Disabled select example">
+                <option value="%">--Chọn--</option>
+                <option th:each="ser: ${services}" th:value="${ser.facilityId}" th:text="${ser.facilityName}"></option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">
+            <i class="fas fa-search"></i>
+        </button>
+    </div>
+</form>
+
+
+<form th:action="@{/contract/delete}" method="get">
+<table class="table">
+    <thead class="table-dark">
+    <tr>
+        <td>STT</td>
+        <!--        <td>ID</td>-->
+        <td>
+            <a th:href="@{/contract(page=${contracts.number},employee=${employee},customer=${customer},service=${service},sort='contract_start_date,asc')}">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up"
+                     viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                          d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5z"/>
+                </svg>
+            </a>
+            Deposit
+            <a th:href="@{/contract(page=${contracts.number},employee=${employee},customer=${customer},service=${service},sort='contract_start_date,desc')}">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down"
+                     viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                          d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1z"/>
+                </svg>
+            </a>
+        </td>
+        <td>End Day</td>
+        <td>Start Day</td>
+        <td>Total money</td>
+        <td>Customer</td>
+        <td>Employee</td>
+        <td>Service</td>
+        <td>Action</td>
+        <td><button type="submit" class="btn btn-primary">   <i class="fas fa-search"></i>
+        </button></td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="contract,loop : ${contracts}">
+        <td th:text="${loop.count}"></td>
+        <!--        <td th:text="${customer.id}"></td>-->
+        <td th:text="${contract.contractDeposit}" id="name1"></td>
+        <td th:text="${contract.contractEndDate}" ></td>
+        <td th:text="${contract.contractStartDate}" ></td>
+        <td th:text="${contract.contractTotalMoney}" ></td>
+        <td th:text="${contract.employee.employeeName}" ></td>
+        <td th:text="${contract.customer.customerName}"></td>
+        <td th:text="${contract.facility.facilityName}"></td>
+        <td>
+            <a class="btn btn-warning" th:href="@{/contract/edit(id=${contract.contractId})}" style="color: white">Edit</a>
+            <!--            <a class="btn btn-warning" th:id="edit" style="color: white">Edit</a>-->
+
+
+            <button  th:attr="onclick=|deleteModal('${contract.contractId}')|" type="button" class="btn btn-danger" data-mdb-toggle="modal" data-mdb-target="#exampleModal">
+                Delete
+            </button>
+        </td>
+        <td><input type="checkbox" name="id" th:value="${contract.contractId}"></td>
+    </tr>
+    </tbody>
+</table>
+</form>
+<div>
+    <a th:if="${contracts.hasPrevious()}" th:href="@{/contract(page=${contracts.number - 1},employee=${employee},customer=${customer},service=${service},sort=${sort})}">
+        Previous
+    </a>
+    <span th:text="${contracts.number + 1}"></span>
+    /
+    <span th:text="${contracts.totalPages}"></span>
+    <a th:if="${contracts.hasNext()}" th:href="@{/contract(page=${contracts.number + 1},employee=${employee},customer=${customer},service=${service},sort=${sort})}">Next</a>
+
+</div>
+<!-- Modal -->
+<form th:action="@{/employee/delete}" >
+    <div class="modal top fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-mdb-backdrop="true" data-mdb-keyboard="true">
+        <div class="modal-dialog  ">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Delete Customer</h5>
+                    <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Bạn có muốn xóa nhân viên này không<br>
+                    <span>Tên: <p id = "name"></p></span>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">
+                        Close
+                    </button>
+                    <input type="hidden" name="id" id="id-del">
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+<th:block th:replace="~{layout :: bot-bootstrap}"></th:block>
+<!--<script>-->
+<!--    function deleteModal(id,name) {-->
+<!--        document.getElementById("id-del").value = id;-->
+<!--        document.getElementById("name").innerText=id;-->
+<!--    }-->
+<!--</script>-->
+<!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>-->
+<!--&lt;!&ndash;<script src="/static/js/mdb.min.js"></script>&ndash;&gt;-->
+<!--<script>-->
+<!--    $("#edit").click(function () {-->
+<!--        $("#name1").attr("contenteditable","true");-->
+<!--    })-->
+<!--</script>-->
+</body>
+</html>

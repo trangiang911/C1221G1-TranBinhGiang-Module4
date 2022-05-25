@@ -4,6 +4,7 @@ import com.codegym.model.employee.Employee;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface IEmployeeService<Employee> {
@@ -14,4 +15,6 @@ public interface IEmployeeService<Employee> {
     com.codegym.model.employee.Employee findById(Integer id);
 
     void deleteById(Integer id);
+
+    List<Employee> findAll();
 }

@@ -73,16 +73,4 @@ public class FacilityController {
             return "redirect:/facility/";
         }
     }
-    @GetMapping(value = "/edit")
-    public String goEdit(@RequestParam Integer id,
-                         RedirectAttributes redirectAttributes,
-                         Model model){
-        Facility facility= this.iFacilityService.findById(id);
-        FacilityDto facilityDto=new FacilityDto();
-        BeanUtils.copyProperties(facility,facilityDto);
-        model.addAttribute("facilityDto",facilityDto);
-        model.addAttribute("rents",this.iRentService.findAll());
-        model.addAttribute("types",this.iFacilityTypeService.findAll());
-        return "/facility/edit-facility";
-    }
 }
