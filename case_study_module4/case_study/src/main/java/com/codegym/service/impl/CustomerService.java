@@ -1,5 +1,6 @@
 package com.codegym.service.impl;
 
+import com.codegym.dto.CustomerHaveBooking;
 import com.codegym.model.customer.Customer;
 import com.codegym.repository.ICustomerRepository;
 import com.codegym.service.ICustomerService;
@@ -38,5 +39,10 @@ public class CustomerService implements ICustomerService<Customer> {
     @Override
     public List<Customer> findAll() {
         return this.iCustomerRepository.findAll();
+    }
+
+    @Override
+    public Page<CustomerHaveBooking> findAllCustomerHaveBooking(Pageable pageable) {
+        return this.iCustomerRepository.findAllCustomerHaveBooking(pageable);
     }
 }

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Customer</title>
+    <th:block th:replace="~{layout :: top-bootstrap}"></th:block>
+</head>
+<body>
+<h1><a href="/customer/">Customer List</a></h1>
+<h2 th:text="${mess}" class="text-success"></h2>
+<button><a href="/customer/create">Create </a></button>
+<hr>
+<form action="/customer" method="get">
+    <div class="input-group">
+        <div class="form-outline">
+            <input type="search" id="form1" class="form-control" name="name"/>
+            <label class="form-label" for="form1">Search by name</label>
+        </div>
+        <div class="form-outline">
+            <input type="search" id="form2" class="form-control" name="address"/>
+            <label class="form-label" for="form2">Search by address</label>
+        </div>
+        <div class="form-outline">
+            <select name="type" class="form-select" aria-label="Disabled select example">
+                <option value="%">--Chọn--</option>
+                <option th:each="customerType: ${customerTypes}" th:value="${customerType.customerTypeId}" th:text="${customerType.customerTypeName}"></option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">
+            <i class="fas fa-search"></i>
+        </button>
+    </div>
+</form>
+<table class="table">
+    <thead class="table-dark">
+    <tr>
+        <td>STT</td>
+        <!--        <td>ID</td>-->
+        <td>
+            <a th:href="@{/customer(page=${customerHaveBookings.number},sort='customer_name,asc')}">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up"
+                     viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                          d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5z"/>
+                </svg>
+            </a>
+            Name
+            <a th:href="@{/customer(page=${customerHaveBookings.number},sort='customer_name,desc')}">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down"
+                     viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                          d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1z"/>
+                </svg>
+            </a>
+        </td>
+        <td>Start Day</td>
+        <td>End Day</td>
+        <td>Name Facility</td>
+        <td>Attach Service</td>
+        <td>Total</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="booking,loop : ${customerHaveBookings}">
+        <td th:text="${loop.count}"></td>
+        <!--        <td th:text="${customer.id}"></td>-->
+        <td th:text="${booking.nameCustomer}" id="name1"></td>
+        <td th:text="${booking.startDate}" ></td>
+        <td th:text="${booking.endDate}"></td>
+        <td th:text="${booking.nameServiceInclude}"></td>
+        <td th:text="${booking.nameFacility}"></td>
+        <td th:text="${#numbers.formatDecimal(booking.total, 0, 'COMMA', 0, 'POINT')}"></td>
+    </tbody>
+</table>
+<div>
+    <a th:if="${customerHaveBookings.hasPrevious()}" th:href="@{/customer/have-booking(page=${customerHaveBookings.number - 1})}">
+        Previous
+    </a>
+    <span th:text="${customerHaveBookings.number + 1}"></span>
+    /
+    <span th:text="${customerHaveBookings.totalPages}"></span>
+    <a th:if="${customerHaveBookings.hasNext()}" th:href="@{/customer/have-booking(page=${customerHaveBookings.number + 1})}">Next</a>
+
+</div>
+<th:block th:replace="~{layout :: bot-bootstrap}"></th:block>
+<script>
+    function deleteModal(id,name) {
+        document.getElementById("id-del").value = id;
+        document.getElementById("name").innerText=name;
+    }
+</script>
+
+</body>
+</html>

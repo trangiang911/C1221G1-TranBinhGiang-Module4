@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Customer</title>
+    <title>Contract</title>
     <th:block th:replace="~{layout :: top-bootstrap}"></th:block>
 </head>
 <body>
@@ -75,7 +75,7 @@
     <tr th:each="contract,loop : ${contracts}">
         <td th:text="${loop.count}"></td>
         <!--        <td th:text="${customer.id}"></td>-->
-        <td th:text="${contract.contractDeposit}" id="name1"></td>
+        <td th:text="${contract.contractDeposit}"></td>
         <td th:text="${contract.contractEndDate}" ></td>
         <td th:text="${contract.contractStartDate}" ></td>
         <td th:text="${contract.contractTotalMoney}" ></td>

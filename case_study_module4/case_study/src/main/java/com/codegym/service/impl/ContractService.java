@@ -29,4 +29,9 @@ public class ContractService implements IContractService<Contract> {
     public void delete(List<Integer> integerList) {
         this.iContractRepository.deleteAllById(integerList);
     }
+
+    @Override
+    public List<Contract> findAll() {
+        return this.iContractRepository.findAll();
+    }
 }

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Order List</title>
+    <th:block th:replace="~{layout :: top-bootstrap}"></th:block>
+</head>
+<body>
+<!--<h1><a href="/contract/">Contract List</a></h1>-->
+<h2 th:text="${mess}" class="text-success"></h2>
+<!--<button><a href="/contract/create">Create </a></button>-->
+<hr>
+<form action="/order/" method="get">
+    <div class="input-group">
+        <div class="form-outline">
+            <input type="date" name="dateStart" value="0001-01-01">
+        </div>
+        <div class="form-outline">
+            <input type="date" name="dateEnd" value="9999-12-31">
+        </div>
+
+        <button type="submit" class="btn btn-primary">
+            <i class="fas fa-search"></i>
+        </button>
+    </div>
+</form>
+
+    <table class="table">
+        <thead class="table-dark">
+        <tr>
+            <td>STT</td>
+            <!--        <td>ID</td>-->
+            <td>
+<!--                <a th:href="@{/contract(page=${contracts.number},employee=${employee},customer=${customer},service=${service},sort='contract_start_date,asc')}">-->
+<!--                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up"-->
+<!--                         viewBox="0 0 16 16">-->
+<!--                        <path fill-rule="evenodd"-->
+<!--                              d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5z"/>-->
+<!--                    </svg>-->
+<!--                </a>-->
+                Mã đơn hàng
+<!--                <a th:href="@{/contract(page=${contracts.number},employee=${employee},customer=${customer},service=${service},sort='contract_start_date,desc')}">-->
+<!--                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down"-->
+<!--                         viewBox="0 0 16 16">-->
+<!--                        <path fill-rule="evenodd"-->
+<!--                              d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1z"/>-->
+<!--                    </svg>-->
+<!--                </a>-->
+            </td>
+            <td>Tên Sản Phẩm</td>
+            <td>Giá(USD)</td>
+            <td>Loại Sản Phẩm</td>
+            <td>Ngày mua</td>
+            <td>Số lượng</td>
+            <td>Tổng Tiền</td>
+            <td>Action</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="order,loop : ${orders}">
+            <td th:text="${loop.count}"></td>
+            <!--        <td th:text="${customer.id}"></td>-->
+            <td th:text="${order.orderProductId}"></td>
+            <td th:text="${order.product.productName}"></td>
+            <td th:text="${order.product.productPrice}"></td>
+            <td th:text="${order.product.productId}"></td>
+            <td th:text="${order.dateBuy}"></td>
+            <td th:text="${order.amount}"></td>
+            <td th:text="${order.amount}*${order.product.productPrice}"></td>
+            <td>
+                <a class="btn btn-warning" th:href="@{/order/edit(id=${order.orderProductId})}" style="color: white">Edit</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+<div>
+    <a th:if="${orders.hasPrevious()}" th:href="@{/order/(page=${orders.number - 1},dateStart=${dateStart},dateEnd=${dateEnd})}">
+        Previous
+    </a>
+    <span th:text="${orders.number + 1}"></span>
+    /
+    <span th:text="${orders.totalPages}"></span>
+    <a th:if="${orders.hasNext()}" th:href="@{/order/(page=${orders.number + 1},dateStart=${dateStart},dateEnd=${dateEnd})}">Next</a>
+</div>
+</body>
+</html>

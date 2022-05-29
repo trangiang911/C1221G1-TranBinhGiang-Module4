@@ -1,16 +1,23 @@
 package com.codegym.dto;
 
 import com.codegym.model.contract.Contract;
+import com.codegym.model.customer.Customer;
 import com.codegym.model.customer.CustomerType;
+import com.codegym.service.ICustomerService;
+import com.codegym.service.impl.CustomerService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
+import java.util.ArrayList;
 import java.util.List;
 
-public class CustomerDto {
+public class CustomerDto implements Validator{
+
     private Integer customerId;
     @Pattern(regexp ="^\\p{L}+( (\\p{L})+)*$",message = "Tên phải đúng định dạng (Nguyễn Văn A)")
     private String customerName;
@@ -27,8 +34,16 @@ public class CustomerDto {
     @NotNull(message = "yêu cầu chọn loại khách hàng")
     private CustomerType customerType;
     private List<Contract> contracts;
-
+    private List<Customer> customers;
     public CustomerDto() {
+    }
+
+    public List<Customer> getCustomers() {
+        return customers;
+    }
+
+    public void setCustomers(List<Customer> customers) {
+        this.customers = customers;
     }
 
     public Integer getCustomerId() {
@@ -109,5 +124,21 @@ public class CustomerDto {
 
     public void setContracts(List<Contract> contracts) {
         this.contracts = contracts;
+    }
+
+    @Override
+    public boolean supports(Class<?> clazz) {
+        return false;
+    }
+
+    @Override
+    public void validate(Object target, Errors errors) {
+        CustomerDto customerDto=(CustomerDto) target;
+        for (int i = 0; i < customerDto.getCustomers().size() ; i++) {
+            if(customerDto.getCustomerEmail().equals(customerDto.getCustomers().get(i).getCustomerEmail())){
+                errors.rejectValue("customerEmail","email.loop");
+                break;
+            }
+        }
     }
 }

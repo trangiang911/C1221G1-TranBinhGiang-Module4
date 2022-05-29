@@ -1,11 +1,13 @@
 package com.codegym.controller;
 
 import com.codegym.dto.CustomerDto;
+import com.codegym.dto.CustomerHaveBooking;
 import com.codegym.model.customer.Customer;
 import com.codegym.service.ICustomerService;
 import com.codegym.service.ICustomerTypeService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
@@ -54,6 +56,8 @@ public class CustomerController {
                          BindingResult bindingResult,
                          RedirectAttributes redirectAttributes,
                          Model model){
+        customerDto.setCustomers(this.iCustomerService.findAll());
+        new CustomerDto().validate(customerDto,bindingResult);
         if(bindingResult.hasFieldErrors()){
             model.addAttribute("customerTypes",this.iCustomerTypeService.findAll());
             return "customer/create-customers";
@@ -91,5 +95,11 @@ public class CustomerController {
         this.iCustomerService.save(customer);
         redirectAttributes.addFlashAttribute("mess","Edit OK!");
         return "redirect:/customer/";
+    }
+    @GetMapping("/have-booking")
+    public String getCustomerHaveBooking(Model model, @PageableDefault(value = 5) Pageable pageable) {
+        Page<CustomerHaveBooking> customerHaveBookings = this.iCustomerService.findAllCustomerHaveBooking(pageable);
+        model.addAttribute("customerHaveBookings", customerHaveBookings);
+        return "/customer/booking";
     }
 }

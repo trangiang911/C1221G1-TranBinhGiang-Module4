@@ -3,10 +3,12 @@ package com.codegym.dto;
 import com.codegym.model.contract.Contract;
 import com.codegym.model.facility.FacilityType;
 import com.codegym.model.facility.RentType;
+import org.springframework.validation.Errors;
+import org.springframework.validation.Validator;
 
 import java.util.List;
 
-public class FacilityDto {
+public class FacilityDto implements Validator {
     private Integer facilityId;
     private String facilityName;
     private String facilityArea;
@@ -117,5 +119,21 @@ public class FacilityDto {
 
     public void setContracts(List<Contract> contracts) {
         this.contracts = contracts;
+    }
+
+    @Override
+    public boolean supports(Class<?> clazz) {
+        return false;
+    }
+
+    @Override
+    public void validate(Object target, Errors errors) {
+        FacilityDto facilityDto=(FacilityDto) target;
+        if(facilityDto.getFacilityType().getFacilityTypeId() == 1 && !facilityDto.getPoolArea().matches("^[0-9]+$")){
+            errors.rejectValue("poolArea","pool.valid");
+        }
+        if(facilityDto.getFacilityType().getFacilityTypeId() == 1 && !facilityDto.getNumberOfFloors().matches("^[0-9]+$")){
+            errors.rejectValue("poolArea","pool.valid");
+        }
     }
 }

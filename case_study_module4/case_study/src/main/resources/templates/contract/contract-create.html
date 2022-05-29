@@ -36,10 +36,10 @@
         <div class="w-25 mx-auto">
             <span style="color: red" th:if="${#fields.hasErrors('contractStartDate')}" th:errors="*{contractStartDate}"></span>
         </div>
-        <div class="form-outline w-25 mx-auto my-4">
-            <input class="form-control" id="phone" type="text" th:field="*{contractTotalMoney}"/>
-            <label class="form-label" for="phone">contractTotalMoney</label>
-        </div>
+<!--        <div class="form-outline w-25 mx-auto my-4">-->
+<!--            <input class="form-control" id="phone" type="text" th:field="*{contractTotalMoney}"/>-->
+<!--            <label class="form-label" for="phone">contractTotalMoney</label>-->
+<!--        </div>-->
         <div class="form-outline w-25 mx-auto my-4">
             <select  th:field="*{customer}" class="form-select" aria-label="Disabled select example" >
                 <option value="0" th:text="---Select---"></option>

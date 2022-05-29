@@ -1,12 +1,10 @@
 package com.codegym.controller;
 
+import com.codegym.dto.ContractDetailDto;
 import com.codegym.dto.ContractDto;
 import com.codegym.model.contract.Contract;
 import com.codegym.model.customer.Customer;
-import com.codegym.service.IContractService;
-import com.codegym.service.ICustomerService;
-import com.codegym.service.IEmployeeService;
-import com.codegym.service.IFacilityService;
+import com.codegym.service.*;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -33,6 +31,10 @@ public class ContractController {
     ICustomerService iCustomerService;
     @Autowired
     IFacilityService iFacilityService;
+    @Autowired
+    IContractDetailService iContractDetailService;
+    @Autowired
+    IAttachService iAttachService;
     @GetMapping("")
     public String list(Model model,
                        @RequestParam Optional<String> sort,
@@ -55,7 +57,7 @@ public class ContractController {
        return "contract/list-contract";
     }
     @GetMapping("/create")
-    public String goList(Model model){
+    public String goCreate(Model model){
         model.addAttribute("contractDto",new ContractDto());
         model.addAttribute("employees",this.iEmployeeService.findAll());
         model.addAttribute("customers",this.iCustomerService.findAll());
@@ -63,7 +65,7 @@ public class ContractController {
         return "contract/contract-create";
     }
     @PostMapping("/create")
-    public String list(@ModelAttribute @Validated ContractDto contractDto,
+    public String create(@ModelAttribute @Validated ContractDto contractDto,
                        BindingResult bindingResult,
                        RedirectAttributes redirectAttributes,
                        Model model){
@@ -77,8 +79,11 @@ public class ContractController {
             Contract contract=new Contract();
             BeanUtils.copyProperties(contractDto,contract);
             this.iContractService.save(contract);
-            redirectAttributes.addFlashAttribute("mess","OK!");
-            return "redirect:/contract/";
+            model.addAttribute("contractDetailDto",new ContractDetailDto());
+            model.addAttribute("attachs",this.iAttachService.findAll());
+            model.addAttribute("contracts",this.iContractService.findAll());
+//            redirectAttributes.addFlashAttribute("mess","OK!");
+            return "contract/contract-detail-create";
         }
     }
     @GetMapping("/delete")

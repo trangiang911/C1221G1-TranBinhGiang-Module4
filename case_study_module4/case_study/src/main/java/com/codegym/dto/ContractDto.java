@@ -104,9 +104,23 @@ public class ContractDto implements Validator {
 
     @Override
     public void validate(Object target, Errors errors) {
-        ContractDto contractDto=(ContractDto) target;
-            if(LocalDate.parse(contractDto.getContractStartDate()).isBefore(LocalDate.now())){
-                errors.rejectValue("contractStartDate","date.valid");
+        ContractDto contractDto = (ContractDto) target;
+        if (!contractDto.getContractEndDate().matches("^\\d{4}\\-(0?[1-9]|1[012])\\-(0?[1-9]|[12][0-9]|3[01])$")) {
+            errors.rejectValue("contractEndDate", "date.null");
+        }
+        if (!contractDto.getContractStartDate().matches("^\\d{4}\\-(0?[1-9]|1[012])\\-(0?[1-9]|[12][0-9]|3[01])$")) {
+            errors.rejectValue("contractStartDate", "date.null");
+        }
+        if (contractDto.getContractEndDate().matches("^\\d{4}\\-(0?[1-9]|1[012])\\-(0?[1-9]|[12][0-9]|3[01])$") && contractDto.getContractStartDate().matches("^\\d{4}\\-(0?[1-9]|1[012])\\-(0?[1-9]|[12][0-9]|3[01])$")) {
+            if (LocalDate.parse(contractDto.getContractEndDate()).isBefore(LocalDate.parse(contractDto.getContractStartDate()))) {
+                errors.rejectValue("contractEndDate", "date.valid");
             }
+        }
+        if (contractDto.getContractStartDate().matches("^\\d{4}\\-(0?[1-9]|1[012])\\-(0?[1-9]|[12][0-9]|3[01])$")) {
+            if (LocalDate.parse(contractDto.getContractStartDate()).isBefore(LocalDate.now())) {
+                errors.rejectValue("contractStartDate", "date.valid");
+            }
+        }
+
     }
 }

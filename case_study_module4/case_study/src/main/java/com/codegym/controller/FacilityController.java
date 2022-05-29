@@ -61,6 +61,7 @@ public class FacilityController {
                          BindingResult bindingResult,
                          RedirectAttributes redirectAttributes,
                          Model model){
+        new FacilityDto().validate(facilityDto,bindingResult);
         if(bindingResult.hasFieldErrors()){
             model.addAttribute("rents",this.iRentService.findAll());
             model.addAttribute("types",this.iFacilityTypeService.findAll());

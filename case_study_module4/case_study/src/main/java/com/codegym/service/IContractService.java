@@ -12,4 +12,6 @@ public interface IContractService<Contract> {
     void save(com.codegym.model.contract.Contract contract);
 
     void delete(List<Integer> integerList);
+
+    List<Contract> findAll();
 }
