@@ -1,5 +1,7 @@
 package com.codegym.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -10,6 +12,7 @@ public class ProductType {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer productTypeId;
     private String productTypeName;
+    @JsonBackReference
     @OneToMany(mappedBy = "productType")
     private List<Product> productList;
 

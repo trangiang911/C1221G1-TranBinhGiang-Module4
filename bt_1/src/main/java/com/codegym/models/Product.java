@@ -1,5 +1,7 @@
 package com.codegym.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -16,6 +18,7 @@ public class Product {
     @ManyToOne
     @JoinColumn(name="product_type_id",referencedColumnName = "productTypeId")
     private ProductType productType;
+    @JsonBackReference
     @OneToMany(mappedBy = "product")
     private List<OrderProduct> orderProductList;
 
