@@ -1,6 +1,9 @@
 package com.codegym.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "loai_xe")
@@ -9,10 +12,9 @@ public class LoaiXe {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idLoaiXe;
     private String loaiXe;
-
-    @ManyToOne
-    @JoinColumn(name = "id_ben_xe", referencedColumnName = "idBenXe")
-    private BenXe benXe;
+    @JsonBackReference
+    @OneToMany(mappedBy = "loaiXe")
+    private List<LoaiXe> loaiXeList;
 
     public LoaiXe() {
     }
@@ -33,12 +35,12 @@ public class LoaiXe {
         this.loaiXe = loaiXe;
     }
 
-    public BenXe getBenXe() {
-        return benXe;
+    public List<LoaiXe> getLoaiXeList() {
+        return loaiXeList;
     }
 
-    public void setBenXe(BenXe benXe) {
-        this.benXe = benXe;
+    public void setLoaiXeList(List<LoaiXe> loaiXeList) {
+        this.loaiXeList = loaiXeList;
     }
 }
 

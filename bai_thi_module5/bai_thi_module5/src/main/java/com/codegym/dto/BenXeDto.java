@@ -1,15 +1,8 @@
-package com.codegym.model;
+package com.codegym.dto;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.codegym.model.LoaiXe;
 
-import javax.persistence.*;
-import java.util.List;
-
-@Entity
-@Table(name = "ben_xe")
-public class BenXe {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class BenXeDto {
     private Integer idBenXe;
     private String soXe;
     private String tenNhaXe;
@@ -17,15 +10,11 @@ public class BenXe {
     private String diemDen;
     private String sdt;
     private String email;
-    @Column(columnDefinition = "TIME")
     private String gioDi;
-    @Column(columnDefinition = "TIME")
     private String gioDen;
-    @ManyToOne
-    @JoinColumn(name = "id_loai_xe", referencedColumnName = "idLoaiXe")
     private LoaiXe loaiXe;
 
-    public BenXe() {
+    public BenXeDto() {
     }
 
     public Integer getIdBenXe() {
