@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Order List</title>
+    <th:block th:replace="~{layout :: top-bootstrap}"></th:block>
+</head>
+<body>
+<h1>Thống Kê đơn hàng</h1>
+
+<h2 th:text="${mess}" class="text-success"></h2>
+
+<hr>
+<form action="/order/" method="get">
+    <div class="input-group">
+        <div class="form-outline w-25 mx-auto">
+            <input class="form-control" type="date" name="dateStart" id="dateStart">
+            <label class="form-label" for="dateStart">Date buy</label>
+        </div>
+
+        <div class="form-outline w-25 mx-auto">
+            <input class="form-control" type="date" name="dateEnd" id="dateEnd">
+            <label class="form-label" for="dateEnd">Date buy</label>
+        </div>
+
+        <button type="submit" class="btn btn-primary">
+            <i class="fas fa-search"></i>
+        </button>
+    </div>
+    <hr>
+</form>
+<form action="/order/" method="get">
+    <div class="form-outline w-25 mx-auto my-4">
+        <select name="top" class="form-select" aria-label="Disabled select example">
+            <option value="">--Chọn--</option>
+            <option value="5">5</option>
+            <option value="10">10</option>
+        </select>
+        <span>Xem đơn hàng có tổng tiền cao nhất</span>
+        <button type="submit" class="btn btn-secondary mt-4 mx-2">Xem Top</button>
+    </div>
+</form>
+<br>
+<table class="table">
+    <thead class="table-dark">
+    <tr>
+        <td>STT</td>
+        <td>
+            Mã đơn hàng
+        </td>
+        <td>Tên Sản Phẩm</td>
+        <td>Giá(USD)</td>
+        <td>Loại Sản Phẩm</td>
+        <td>Ngày mua</td>
+        <td>Số lượng</td>
+        <td>Tổng Tiền</td>
+        <td>Action</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="order,loop : ${orders}">
+        <td th:text="${loop.count}"></td>
+        <!--        <td th:text="${customer.id}"></td>-->
+        <td th:text="${order.orderProductId}"></td>
+        <td th:text="${order.product.productName}"></td>
+        <td th:text="${order.product.productPrice}"></td>
+        <td th:text="${order.product.productId}"></td>
+        <td th:text="${order.dateBuy}"></td>
+        <td th:text="${order.amount}"></td>
+        <td th:text="${order.amount}*${order.product.productPrice}"></td>
+        <td>
+            <a class="btn btn-warning" th:href="@{/order/edit(id=${order.orderProductId})}"
+               style="color: white">Edit</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<div th:unless="${top eq null}">
+    <a th:if="${orders.hasPrevious()}"
+       th:href="@{/order/(page=${orders.number - 1},dateStart=${dateStart},dateEnd=${dateEnd})}">
+        Previous
+    </a>
+    <span th:text="${orders.number + 1}"></span>
+    /
+    <span th:text="${orders.totalPages}"></span>
+    <a th:if="${orders.hasNext()}"
+       th:href="@{/order/(page=${orders.number + 1},dateStart=${dateStart},dateEnd=${dateEnd})}">Next</a>
+</div>
+</body>
+</html>

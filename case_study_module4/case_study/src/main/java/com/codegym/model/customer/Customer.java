@@ -1,6 +1,7 @@
 package com.codegym.model.customer;
 
 import com.codegym.model.contract.Contract;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
 import java.util.List;
@@ -25,6 +26,7 @@ public class Customer {
     @JoinColumn(name = "customer_type_id",referencedColumnName = "customerTypeId")
     private CustomerType customerType;
 
+    @JsonBackReference
     @OneToMany(mappedBy = "customer",cascade = CascadeType.ALL)
     private List<Contract> contracts;
     public Customer() {

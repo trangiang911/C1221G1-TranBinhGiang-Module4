@@ -9,29 +9,25 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
-import java.util.ArrayList;
+
 import java.util.List;
 
 public class CustomerDto implements Validator{
 
     private Integer customerId;
-    @Pattern(regexp ="^\\p{L}+( (\\p{L})+)*$",message = "Tên phải đúng định dạng (Nguyễn Văn A)")
+//    @Pattern(regexp ="^\\p{L}+( (\\p{L})+)*$",message = "Tên phải đúng định dạng (Nguyễn Văn A)")
     private String customerName;
     private String customerBirthday;
     private Integer customerGender;
-    @Pattern(regexp = "^[0-9]{9}$")
+//    @Pattern(regexp = "^[0-9]{9}$")
     private String customerIdCard;
-    @Pattern(regexp = "^((\\(84\\)\\+(90))|(\\(84\\)\\+(91))|(090)|(091))\\d{7}$",
-            message = "Số điện thoại phải đúng định dạng 090xxxxxxx hoặc 091xxxxxxx hoặc (84)+90xxxxxxx hoặc (84)+91xxxxxxx")
+//    @Pattern(regexp = "^((\\(84\\)\\+(90))|(\\(84\\)\\+(91))|(090)|(091))\\d{7}$",
+//            message = "Số điện thoại phải đúng định dạng 090xxxxxxx hoặc 091xxxxxxx hoặc (84)+90xxxxxxx hoặc (84)+91xxxxxxx")
     private String customerPhone;
-    @Email(message = "Email phải đúng định dạng quốc tế")
+//    @Email(message = "Email phải đúng định dạng quốc tế")
     private String customerEmail;
     private String customerAddress;
-    @NotNull(message = "yêu cầu chọn loại khách hàng")
+//    @NotNull(message = "yêu cầu chọn loại khách hàng")
     private CustomerType customerType;
     private List<Contract> contracts;
     private List<Customer> customers;

@@ -45,4 +45,9 @@ public class CustomerService implements ICustomerService<Customer> {
     public Page<CustomerHaveBooking> findAllCustomerHaveBooking(Pageable pageable) {
         return this.iCustomerRepository.findAllCustomerHaveBooking(pageable);
     }
+
+    @Override
+    public Page<Customer> findAllCustomer(Pageable pageable) {
+        return this.iCustomerRepository.findAll(pageable);
+    }
 }

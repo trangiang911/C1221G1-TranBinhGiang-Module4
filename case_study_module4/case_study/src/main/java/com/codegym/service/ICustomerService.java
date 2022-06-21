@@ -19,4 +19,6 @@ public interface ICustomerService<Customer> {
     List<Customer> findAll();
 
     Page<CustomerHaveBooking> findAllCustomerHaveBooking(Pageable pageable);
+
+    Page<com.codegym.model.customer.Customer> findAllCustomer(Pageable pageable);
 }

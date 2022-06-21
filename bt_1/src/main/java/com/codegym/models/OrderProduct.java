@@ -7,6 +7,8 @@ import java.util.List;
 @Table(name = "order_product")
 public class OrderProduct {
     @Id
+//    @GeneratedValue(generator = "id-generator")
+//    @GenericGenerator(name = "id-generator",parameters = @Parameter(name = "prefix",value = "p"),strategy = "com.codegym.util.IdentityCodeGenerator")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer orderProductId;
     @Column(columnDefinition = "DATE")

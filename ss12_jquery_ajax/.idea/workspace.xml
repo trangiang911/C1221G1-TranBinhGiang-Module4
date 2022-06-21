@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="5da88821-b79f-4713-8a03-6d6fdd6e2d22" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../bai_thi/bai_thi/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../bai_thi/bai_thi/build.gradle" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../bai_thi/bai_thi/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../bai_thi/bai_thi/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../bai_thi/bai_thi/gradlew" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../bai_thi/bai_thi/gradlew.bat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../bai_thi/bai_thi/settings.gradle" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../bai_thi/bai_thi/src/main/java/com/codegym/BaiThiApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../bai_thi/bai_thi/src/main/java/com/codegym/controller/OrderController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../bai_thi/bai_thi/src/main/java/com/codegym/dto/OrderProductDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../bai_thi/bai_thi/src/main/java/com/codegym/model/OrderProduct.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../bai_thi/bai_thi/src/main/java/com/codegym/model/Product.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../bai_thi/bai_thi/src/main/java/com/codegym/model/ProductType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../bai_thi/bai_thi/src/main/java/com/codegym/repository/IOrderProductRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../bai_thi/bai_thi/src/main/java/com/codegym/repository/IProductRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../bai_thi/bai_thi/src/main/java/com/codegym/repository/IProductTypeRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../bai_thi/bai_thi/src/main/java/com/codegym/service/IOrderProductService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../bai_thi/bai_thi/src/main/java/com/codegym/service/IProductService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../bai_thi/bai_thi/src/main/java/com/codegym/service/IProductTypeService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../bai_thi/bai_thi/src/main/java/com/codegym/service/impl/OrderProductService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../bai_thi/bai_thi/src/main/java/com/codegym/service/impl/ProductServicce.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../bai_thi/bai_thi/src/main/java/com/codegym/service/impl/ProductTypeService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../bai_thi/bai_thi/src/main/java/com/codegym/util/IdentityCodeGenerator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../bai_thi/bai_thi/src/main/resources/application.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../bai_thi/bai_thi/src/main/resources/templates/edit.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../bai_thi/bai_thi/src/main/resources/templates/js/jquery-3.6.0.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../bai_thi/bai_thi/src/main/resources/templates/js/mdb.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../bai_thi/bai_thi/src/main/resources/templates/js/mdb.min.js.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../bai_thi/bai_thi/src/main/resources/templates/layout.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../bai_thi/bai_thi/src/main/resources/templates/list.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../bai_thi/bai_thi/src/test/java/com/codegym/bai_thi/BaiThiApplicationTests.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../bt_1/src/main/java/com/codegym/utils/IdentityCodeGenerator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../case_study_module4/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../case_study_module4/.idea/case_study_module4.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../case_study_module4/.idea/gradle.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../case_study_module4/.idea/jarRepositories.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../case_study_module4/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../case_study_module4/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../case_study_module4/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../case_study_module4/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bt_1/src/main/java/com/codegym/controller/OrderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../bt_1/src/main/java/com/codegym/controller/OrderController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bt_1/src/main/java/com/codegym/models/OrderProduct.java" beforeDir="false" afterPath="$PROJECT_DIR$/../bt_1/src/main/java/com/codegym/models/OrderProduct.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../case_study_module4/case_study/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../case_study_module4/case_study/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../case_study_module4/case_study/src/main/java/com/codegym/dto/CustomerDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/../case_study_module4/case_study/src/main/java/com/codegym/dto/CustomerDto.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectId" id="29xMXJ3sl2gGk9nYOzQxmdsm0of" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="5da88821-b79f-4713-8a03-6d6fdd6e2d22" name="Default Changelist" comment="" />
+      <created>1654050321618</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1654050321618</updated>
+      <workItem from="1654050324024" duration="66000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="2" />
+  </component>
+</project>
